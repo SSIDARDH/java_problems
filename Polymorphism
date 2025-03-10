@@ -1,0 +1,189 @@
+1. Write a java program using polymorphism to display the location of the hillstation and the place is famous for.
+Location is: Manali is in Himachal Pradesh
+Famous for: It is Famous for Hadimba Temple and adventure sportswe are creating one superclass Hillstations and three subclasses Manali, Mussoorie, Gulmarg. 
+Subclasses extend the superclass and override its location() and famousfor() method. We will call the location() and famousfor() method by the Parent class’, i.e. 
+Hillstations class. As it refers to the base class object and the base class method overrides the superclass method; the base class method is invoked at runtime.
+
+class Hillstations {
+
+    public void location() {
+        System.out.println("Location: This is a hill station.");
+    }
+
+    public void famousFor() {
+        System.out.println("Famous for: General hill station attractions.");
+    }
+}
+class Manali extends Hillstations {
+    public void location() {
+        System.out.println("Location: Manali is in Himachal Pradesh.");
+    }
+    public void famousFor() {
+        System.out.println("Famous for: Hadimba Temple and adventure sports.");
+    }
+}
+class Mussoorie extends Hillstations {
+    public void location() {
+        System.out.println("Location: Mussoorie is in Uttarakhand.");
+    }
+    public void famousFor() {
+        System.out.println("Famous for: Kempty Falls and Camel's Back Road.");
+    }
+}
+class Gulmarg extends Hillstations {
+      public void location() {
+        System.out.println("Location: Gulmarg is in Jammu & Kashmir.");
+    }
+    public void famousFor() {
+        System.out.println("Famous for: Skiing and Gondola ride.");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+
+        Hillstations manali = new Manali();
+        Hillstations mussoorie = new Mussoorie();
+        Hillstations gulmarg = new Gulmarg();
+
+        System.out.println("Manali Details:");
+        manali.location();
+        manali.famousFor();
+        System.out.println();
+
+        System.out.println("Mussoorie Details:");
+        mussoorie.location();
+        mussoorie.famousFor();
+        System.out.println();
+
+        System.out.println("Gulmarg Details:");
+        gulmarg.location();
+        gulmarg.famousFor();
+    }
+}
+
+2. A boy has his money deposited $1000, $1500 and $2000 in banks-Bank A, Bank B and Bank C respectively. We have to print the money deposited by him in a particular bank.
+Create a class 'Bank' with a method 'getBalance' which returns 0. Make its three subclasses named 'BankA', 'BankB' and 'BankC' with a method with the same name 'getBalance' 
+which returns the amount deposited in that particular bank. Call the method 'getBalance' by the object of each of the three banks.
+Suppose a class 'A' has a static method to print "Parent". Its subclass 'B' also has a static method with the same name to print "Child". 
+Now call this method by the objects of the two classes. Also, call this method by an object of the parent class refering to the child class i.e. A obj = new B().
+All the banks operating in India are controlled by RBI. RBI has set a well defined guideline (e.g. minimum interest rate, minimum balance allowed, maximum withdrawal limit etc) 
+which all banks must follow. For example, suppose RBI has set minimum interest rate applicable to a saving bank account to be 4% annually; however, banks are free to use 4% 
+interest rate or to set any rates above it.
+Write a JAVA program to implement bank functionality in the above scenario and demonstrate the dynamic polymorphism concept. 
+Note: Create few classes namely Customer, Account, RBI (Base Class) and few derived classes (SBI, ICICI, PNB etc). 
+Assume and implement required member variables and functions in each class.
+
+
+class Bank {
+    // Default method returns 0 as balance
+    public int getBalance() {
+        return 0;
+    }
+}
+class BankA extends Bank {
+    public int getBalance() {
+        return 1000;  // Amount deposited in Bank A
+    }
+}
+class BankB extends Bank {
+    public int getBalance() {
+        return 1500;
+    }
+}
+class BankC extends Bank {
+    public int getBalance() {
+        return 2000;
+    }
+}
+class A {
+    public static void printName() {
+        System.out.println("Parent");
+    }
+}
+
+class B extends A {
+    public static void printName() {
+        System.out.println("Child");
+    }
+}
+class RBI {
+    double minInterestRate = 4.0;
+
+    public void displayInterestRate() {
+        System.out.println("RBI Minimum Interest Rate: " + minInterestRate + "%");
+    }
+}
+class SBI extends RBI {
+    double interestRate = 6.0; 
+
+    
+    public void displayInterestRate() {
+        System.out.println("SBI Interest Rate: " + interestRate + "%");
+    }
+}
+class ICICI extends RBI {
+    double interestRate = 5.5;
+
+    public void displayInterestRate() {
+        System.out.println("ICICI Interest Rate: " + interestRate + "%");
+    }
+}
+
+class PNB extends RBI {
+    double interestRate = 5.8;
+
+    public void displayInterestRate() {
+        System.out.println("PNB Interest Rate: " + interestRate + "%");
+    }
+}
+class Customer {
+    String name;
+    String accountType;
+    public Customer(String name, String accountType) {
+        this.name = name;
+        this.accountType = accountType;
+    }
+    public void displayCustomerInfo() {
+        System.out.println("Customer Name: " + name);
+        System.out.println("Account Type: " + accountType);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Bank bankA = new BankA();
+        Bank bankB = new BankB();
+        Bank bankC = new BankC();
+
+        System.out.println("Balance in Bank A: " + bankA.getBalance());
+        System.out.println("Balance in Bank B: " + bankB.getBalance());
+        System.out.println("Balance in Bank C: " + bankC.getBalance());
+        System.out.println();
+
+        A objA = new A();
+        A objB = new B();
+
+        objA.printName();
+        objB.printName();
+        A obj = new B();
+        obj.printName();
+
+        System.out.println();
+
+        RBI rbi = new RBI();
+        rbi.displayInterestRate();
+        RBI sbi = new SBI();
+        sbi.displayInterestRate(); 
+
+        RBI icici = new ICICI();
+        icici.displayInterestRate();
+
+        RBI pnb = new PNB();
+        pnb.displayInterestRate(); 
+
+        System.out.println();
+        Customer customer1 = new Customer("John Doe", "Savings");
+        customer1.displayCustomerInfo();
+    }
+}
