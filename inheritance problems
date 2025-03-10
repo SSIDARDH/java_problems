@@ -1,0 +1,117 @@
+1. single inheritance.
+
+class Room {
+    double length;
+    double width;
+    public Room(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+    public double calculateArea() {
+        return length * width;
+    }
+}
+class RoomWithHeight extends Room {
+    double height;
+    public RoomWithHeight(double length, double width, double height) {
+        super(length, width);
+        this.height = height;
+    }
+    public double calculateVolume() {
+        return calculateArea() * height;
+    }
+}
+public class RoomInheritance {
+    public static void main(String[] args) {
+        RoomWithHeight room = new RoomWithHeight(10.0, 12.0, 8.0);
+        double area = room.calculateArea();
+        System.out.println("Area of the room: " + area + " square units.");
+        double volume = room.calculateVolume();
+        System.out.println("Volume of the room: " + volume + " cubic units.");
+    }
+}
+
+2. To write a java program to implement hierarchical inheritance to compute the net salary of different types of employees and print their payslips.
+Develop a java application with Employee class with Emp_name, Emp_id, Address, Mail_id, Mobile_no as members. Inherit the classes, Programmer, 
+Assistant Professor, Associate Professor and Professor from employee class. Add Basic Pay (BP) as the member of all the inherited classes with 
+97% of BP as DA, 10 % of BP as HRA, 12% of BP as PF, 0.1% of BP for staff club fund. Generate pay slips for the employees with their gross and net salary.
+
+class Employee {
+    String empName;
+    int empId;
+    double basicPay;
+
+    public Employee(String empName, int empId, double basicPay) {
+        this.empName = empName;
+        this.empId = empId;
+        this.basicPay = basicPay;
+    }
+
+    public double calculateNetSalary() {
+        double da = 0.97 * basicPay;
+        double hra = 0.10 * basicPay;
+        double pf = 0.12 * basicPay;
+        double clubFund = 0.001 * basicPay; Fund
+        double grossSalary = basicPay + da + hra;
+        return grossSalary - pf - clubFund;
+    }
+    public void displayDetails() {
+        System.out.println("Employee Name: " + empName);
+        System.out.println("Employee ID: " + empId);
+        System.out.println("Basic Pay: " + basicPay);
+    }
+}
+class Programmer extends Employee {
+    public Programmer(String empName, int empId, double basicPay) {
+        super(empName, empId, basicPay);
+    }
+    public void generatePayslip() {
+        displayDetails();
+        System.out.println("Net Salary: " + calculateNetSalary());
+    }
+}
+
+class AssistantProfessor extends Employee {
+    public AssistantProfessor(String empName, int empId, double basicPay) {
+        super(empName, empId, basicPay);
+    }
+    public void generatePayslip() {
+        displayDetails();
+        System.out.println("Net Salary: " + calculateNetSalary());
+    }
+}
+class AssociateProfessor extends Employee {
+    public AssociateProfessor(String empName, int empId, double basicPay) {
+        super(empName, empId, basicPay);
+    }
+    public void generatePayslip() {
+        displayDetails();
+        System.out.println("Net Salary: " + calculateNetSalary());
+        System.out.println("---------------------------");
+    }
+}
+
+class Professor extends Employee {
+    public Professor(String empName, int empId, double basicPay) {
+        super(empName, empId, basicPay);
+    }
+    public void generatePayslip() {
+        displayDetails();
+        System.out.println("Net Salary: " + calculateNetSalary());
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Programmer programmer = new Programmer("John Doe", 101, 50000);
+        AssistantProfessor assistantProfessor = new AssistantProfessor("Alice Smith", 102, 60000);
+        AssociateProfessor associateProfessor = new AssociateProfessor("Bob Brown", 103, 70000);
+        Professor professor = new Professor("Charlie White", 104, 80000);
+        
+        programmer.generatePayslip();
+        assistantProfessor.generatePayslip();
+        associateProfessor.generatePayslip();
+        professor.generatePayslip();
+    }
+}
+
